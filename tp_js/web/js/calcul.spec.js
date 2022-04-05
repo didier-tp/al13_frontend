@@ -29,9 +29,13 @@ describe("my calculator tests", function () {
 	it("racine carre de 9 vaut bien 3", function () {
          expect(racineCarree(9)).toBe(3);
     });
+
+    it("la moitie de 32 vaut elle bien 16", function () {
+        expect(moitie(32)).toBe(16);
+   });
 	
 	afterAll( function(){
-		expect(compteur).toBe(5);
+		expect(compteur).toBe(6);
 	});
             
 });

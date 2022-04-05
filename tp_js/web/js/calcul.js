@@ -17,3 +17,9 @@ function racineCarree(x){
 	return Math.sqrt(x);
 	//return 0;
 }
+
+//la moitie de 16 vaut 8
+//la moitie de 10 vaut 5
+function moitie(x){
+	return x/2;
+}
