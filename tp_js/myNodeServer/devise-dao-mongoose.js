@@ -6,7 +6,7 @@ var deviseSchema;//mongoose Shcema (structure of mongo document)
 var PersistentDeviseModel; //mongoose Model (constructor of persistent PersistentDeviseModel)
 
 var initMongooseWithSchemaAndModel = function(callbackWithPersistentDeviseModel) {
-    mongoose.connect(mongoDbUrl, {useNewUrlParser: true, useUnifiedTopology: true , dbName : 'devise_db'});
+    mongoose.connect(mongoDbUrl, {useNewUrlParser: true, useUnifiedTopology: true , dbName : 'test'});
     const db = mongoose.connection;
     db.on('error' , function() { console.log("mongoDb connection error = " + " for dbUrl=" + mongoDbUrl )});
     db.once('open', function() {
