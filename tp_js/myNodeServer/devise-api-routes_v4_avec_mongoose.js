@@ -36,6 +36,31 @@ apiRouter.route('/devise-api/public/devise/:code')
 	}
 });
 
+//exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
+apiRouter.route('/devise-api/public/devise-conversion')
+.get( function(req , res  , next ) {
+	let montant = Number(req.query.montant);
+	let codeDeviseSource = req.query.source;
+	let codeDeviseCible = req.query.cible;
+	//on demande à mongodb les détails de la devise source
+	PersistentDeviseModel.findOne( { _id : codeDeviseSource} , 
+		                           function (err,deviseSource){							   
+        //callback avec deviseSource si tout va bien   
+		//2 nd appel pour récupérer les détails de la devise cible:
+		PersistentDeviseModel.findOne( { _id : codeDeviseCible} , 
+			function (err,deviseCible){  
+
+			 //callback avec deviseCible si tout va bien 					   
+			 var montantConverti = montant * deviseCible.change / deviseSource.change;
+			 res.send ( { montant : montant , 
+				         source :codeDeviseSource , 
+				         cible : codeDeviseCible ,
+						 montantConverti : montantConverti});
+			});
+		});
+})
+
+
 //exemple URL: http://localhost:8282/devise-api/public/devise-convert?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-convert')
 .get( function(req , res  , next ) {
