@@ -44,18 +44,24 @@ apiRouter.route('/devise-api/public/devise-conversion')
 	let codeDeviseCible = req.query.cible;
 	//on demande à mongodb les détails de la devise source
 	PersistentDeviseModel.findOne( { _id : codeDeviseSource} , 
-		                           function (err,deviseSource){							   
+		                           function (err,deviseSource){	
+		if(err!=null || deviseSource==null )
+		  res.status(404).send({ message:"devise source pas trouvee"})	;	
+		else					   						   
         //callback avec deviseSource si tout va bien   
 		//2 nd appel pour récupérer les détails de la devise cible:
 		PersistentDeviseModel.findOne( { _id : codeDeviseCible} , 
 			function (err,deviseCible){  
-
+			if(err!=null || deviseCible==null )
+				res.status(404).send({ message:"devise cible pas trouvee"})	;
+			else {
 			 //callback avec deviseCible si tout va bien 					   
 			 var montantConverti = montant * deviseCible.change / deviseSource.change;
 			 res.send ( { montant : montant , 
 				         source :codeDeviseSource , 
 				         cible : codeDeviseCible ,
 						 montantConverti : montantConverti});
+			 }
 			});
 		});
 })
