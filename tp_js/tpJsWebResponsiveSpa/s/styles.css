@@ -1,0 +1,20 @@
+@import "common.css"; /* à mettre au début du fichier pour que l'import soit effectif */
+.enEvidence {font-weight : bold;color : red;}
+
+p { font-size: 1.6em ; }
+label.simpleAlign { width:8em; display: inline-block;
+    text-align : right; font-weight: bold;}
+
+tbody tr:nth-child(2n) {
+    color: black;
+    background-color : white;
+}
+
+tbody tr:nth-child(2n+1) {
+    color: white;
+    background-color : black;
+}
+
+thead th {
+    background-color: yellow;
+}
