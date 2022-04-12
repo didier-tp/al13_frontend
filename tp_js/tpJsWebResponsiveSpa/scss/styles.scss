@@ -15,10 +15,11 @@ h1 { color: $couleurPref ; }
 
 h2, h3 {
   @include texte_decore($couleurPref);
+  &:hover {
+    @include texte_decore(red);
+  }
 }
-h2:hover, h3:hover {
-  @include texte_decore(red);
-}
+
 
 
 /*
