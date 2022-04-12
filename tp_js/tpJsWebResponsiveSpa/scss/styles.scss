@@ -4,7 +4,14 @@ media-min or respond-below or media-breakpoint-down
 @import "common.css";
 @import "_mixins.scss";
 
-$couleurPref : rgb(0, 23, 128);
+$couleurPref : rgb(32, 25, 160);
+
+.enEvidence {
+  font-weight: bold;
+  color: $couleurPref !important;
+}
+
+h1 { color: $couleurPref ; }
 
 h2, h3 {
   @include texte_decore($couleurPref);
@@ -40,10 +47,7 @@ h2:hover, h3:hover {
   }
 }
 */
-.enEvidence {
-  font-weight: bold;
-  color: $couleurPref !important;
-}
+
 
 p {
   font-size: 1.6em;

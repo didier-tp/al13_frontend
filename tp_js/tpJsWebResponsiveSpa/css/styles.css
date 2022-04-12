@@ -1,22 +1,93 @@
-@import "common.css"; /* à mettre au début du fichier pour que l'import soit effectif */
-.enEvidence {font-weight : bold;color : red;}
+/*alternative names for media-query mixins :
+media-min or respond-below or media-breakpoint-down
+, media-max or respond-above ,  media-between or respond-between */
+@import "common.css";
+.enEvidence {
+  font-weight: bold;
+  color: rgb(32, 25, 160) !important;
+}
 
-p { font-size: 1.6em ; }
-label.simpleAlign { width:8em; display: inline-block;
-    text-align : right; font-weight: bold;}
+h1 {
+  color: rgb(32, 25, 160);
+}
+
+h2, h3 {
+  color: rgb(32, 25, 160);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+h2:hover, h3:hover {
+  color: red;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/*
+@media screen and (max-width: 575px) {
+  h3 {
+    font-size: 80%;
+    color: black;
+  }
+}
+@media screen and (min-width: 576px) {
+  h3 {
+    font-size: 100%;
+    color: green;
+  }
+}
+@media screen and (min-width: 768px) {
+  h3 {
+    font-size: 130%;
+    color: blue;
+  }
+}
+@media screen and (min-width: 992px) {
+  h3 {
+    font-size: 160%;
+    color: #176d23;
+  }
+}
+*/
+p {
+  font-size: 1.6em;
+}
+
+label.simpleAlign {
+  width: 8em;
+  display: inline-block;
+  text-align: right;
+  font-weight: bold;
+}
 
 tbody tr:nth-child(2n) {
-    color: black;
-    background-color : white;
+  color: black;
+  background-color: white;
 }
 
 tbody tr:nth-child(2n+1) {
-    color: white;
-    background-color : black;
+  color: white;
+  background-color: black;
 }
 
 thead th {
-    background-color: yellow;
+  background-color: yellow;
+}
+
+.c-fieldset {
+  padding: 0.5em;
+  margin: 0.5em;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.c-legend {
+  width: inherit;
+  /* Or auto */
+  padding: 0 10px;
+  /* To give a bit of padding on the left and right */
+  border-bottom: none;
 }
 
 .small-zoom {
@@ -201,21 +272,25 @@ img {
   height: 200px;
 }
 
-.f-form-group-wrap{
-	display : flex;
-	flex-flow : row wrap;
+.f-form-group-wrap {
+  display: flex;
+  flex-flow: row wrap;
 }
 
-label.f-align { width:12em;  display : inline-block;
-                margin-left: 0.3em;
-                flex: 0 0 12em; 
-              }
-
-.f-align{
+label.f-align {
+  width: 12em;
+  display: inline-block;
   margin-left: 0.3em;
-	flex: 1 1 auto;
+  flex: 0 0 12em;
 }
 
-.f-max-size{
-	width: 98%;
+.f-align {
+  margin-left: 0.3em;
+  flex: 1 1 auto;
 }
+
+.f-max-size {
+  width: 98%;
+}
+
+/*# sourceMappingURL=styles.css.map */
