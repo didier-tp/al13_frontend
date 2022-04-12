@@ -200,3 +200,22 @@ img {
   width: 200px;
   height: 200px;
 }
+
+.f-form-group-wrap{
+	display : flex;
+	flex-flow : row wrap;
+}
+
+label.f-align { width:12em;  display : inline-block;
+                margin-left: 0.3em;
+                flex: 0 0 12em; 
+              }
+
+.f-align{
+  margin-left: 0.3em;
+	flex: 1 1 auto;
+}
+
+.f-max-size{
+	width: 98%;
+}
