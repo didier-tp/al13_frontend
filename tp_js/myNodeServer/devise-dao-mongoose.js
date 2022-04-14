@@ -56,7 +56,7 @@ function getDeviseByCriteria(critere){
             /* callback de mongoose */
             (err,devise)=>{	
               if(err!=null || devise==null )
-                  reject({ message:"devise source pas trouvee"})	;	
+                  reject({ message:"devise  pas trouvee"})	;	
               else
                   resolve(devise);
             });//end of findOne()

@@ -36,6 +36,7 @@ apiRouter.route('/devise-api/public/devise/:code')
 	}
 });
 
+/*
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-conversion')
 .get( function(req , res  , next ) {
@@ -64,6 +65,28 @@ apiRouter.route('/devise-api/public/devise-conversion')
 			 }
 			});
 		});
+})
+*/
+
+//exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
+apiRouter.route('/devise-api/public/devise-conversion')
+.get( function(req , res  , next ) {
+	let montant = Number(req.query.montant);
+	let codeDeviseSource = req.query.source;
+	let codeDeviseCible = req.query.cible;
+    let deviseSourceLocal ; 
+    devise_dao_mongoose.getDeviseByCriteria({ _id : codeDeviseSource})
+	.then((deviseSource)=>{ deviseSourceLocal = deviseSource;
+		return devise_dao_mongoose.getDeviseByCriteria({ _id : codeDeviseCible})
+	})
+	.then((deviseCible)=>{
+		var montantConverti = montant * deviseCible.change / deviseSourceLocal.change;
+			 res.send ( { montant : montant , 
+				         source :codeDeviseSource , 
+				         cible : codeDeviseCible ,
+						 montantConverti : montantConverti});
+	})
+	.catch((erreur)=>{ res.status(404).send(erreur)	;});
 })
 
 
