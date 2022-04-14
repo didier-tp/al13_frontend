@@ -48,6 +48,24 @@ function init_devise_db(){
   });
 }
 
+//valeur de retour : Promise<Devise>
+function getDeviseByCriteria(critere){
+   return new Promise(
+     (resolve,reject)=>{ 
+      PersistentDeviseModel.findOne( critere , 
+            /* callback de mongoose */
+            (err,devise)=>{	
+              if(err!=null || devise==null )
+                  reject({ message:"devise source pas trouvee"})	;	
+              else
+                  resolve(devise);
+            });//end of findOne()
+      }
+   );//end of Promise()
+}
+
+
+
 //valeur en retour Promise<Devise>
 function getDeviseByCode(codeDevise){
   return new Promise ((resolve,reject)=> {
@@ -61,6 +79,7 @@ function getDeviseByCode(codeDevise){
   });
 }
 
+module.exports.getDeviseByCriteria=getDeviseByCriteria;
 module.exports.getDeviseByCode=getDeviseByCode;
 module.exports.initMongooseWithSchemaAndModel=initMongooseWithSchemaAndModel;
 module.exports.init_devise_db = init_devise_db;
