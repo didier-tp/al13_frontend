@@ -89,7 +89,7 @@ apiRouter.route('/devise-api/public/devise-conversion')
 	.catch((erreur)=>{ res.status(404).send(erreur)	;});
 })
 */
-
+/*
 //exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
 apiRouter.route('/devise-api/public/devise-conversion')
 .get( async function(req , res  , next ) {
@@ -101,6 +101,31 @@ apiRouter.route('/devise-api/public/devise-conversion')
 			                   { _id : codeDeviseSource});
 		let deviseCible = await devise_dao_mongoose.getDeviseByCriteria(
 			                   { _id : codeDeviseCible});
+		let montantConverti = montant * deviseCible.change / deviseSource.change;
+		res.send ( { montant : montant , 
+					source :codeDeviseSource , 
+					cible : codeDeviseCible ,
+					montantConverti : montantConverti});
+		}
+	catch(ex){
+		res.status(404).send(ex);
+	}
+})
+*/
+
+//exemple URL: http://localhost:8282/devise-api/public/devise-conversion?montant=50&source=EUR&cible=USD
+apiRouter.route('/devise-api/public/devise-conversion')
+.get( async function(req , res  , next ) {
+	let montant = Number(req.query.montant);
+	let codeDeviseSource = req.query.source;
+	let codeDeviseCible = req.query.cible;
+	try{
+		let  [ deviseSource , deviseCible ]
+		 = await  Promise.all([ devise_dao_mongoose.getDeviseByCriteria(
+			                   { _id : codeDeviseSource}) ,
+	                           devise_dao_mongoose.getDeviseByCriteria(
+			                   { _id : codeDeviseCible})
+							   ]);
 		let montantConverti = montant * deviseCible.change / deviseSource.change;
 		res.send ( { montant : montant , 
 					source :codeDeviseSource , 
